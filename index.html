@@ -1,7 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Portfolio of Christian Cosgrove">
+    <meta name="author" content="Christian Cosgrove">
+
+    <title>Christian Cosgrove's Portfolio</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/modern-business.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Lato:400,400i,700" rel="stylesheet">
+
+</head>
+
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+    <div class="container main-container">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+            <img class="profile" src="images/profile.jpg"/>
+            </div>
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Christian Cosgrove
+                </h1>
+            </div>
+            <div class="row description-row">
+                <div class="col-lg-12">
+                    <h4 style="text-align: center">Developer, Student at Johns Hopkins University</h4>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <a href="https://www.linkedin.com/in/christian-cosgrove-78626a11a"><img class="social-button" src="images/linkedin.svg"/></a>
+                    <a href="https://github.com/christiancosgrove"><img class="social-button" src="images/github.svg"/></a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Skills</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>7+ years of software development experience involving native applications, computer graphics, robotics, and web technologies.</p>
+                        <p>Native</p>
+                        <ul>
+                            <li>C++, C#, Java, Python, Swift</li>
+                            <li>OpenGL</li>
+                        </ul>
+
+                        <p>Web &ndash; frontend</p>
+                        <ul>
+                            <li>JavaScript, HTML, CSS</li>
+                            <li>Bootstrap</li>
+                            <li>AngularJS</li>
+                        </ul>
+
+                        <p>Web &ndash; backend</p>
+                        <ul>
+                            <li>NodeJS</li>
+                            <li>MongoDB</li>
+                            <li>AWS S3, CloudFront, SES</li>
+                            <li>Heroku</li>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Education</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Johns Hopkins Class of 2020</p>
+                        <p>Double Major in Physics &amp; Computer Science</p>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <h2 class="page-header">Portfolio</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="strong-title">Planet Rendering</h3>
+                <p class="light-subtitle">September 2014&ndash;February 2015</p>
+            </div>
+            <div class="col-md-6">
+                <p><b>Planet Rendering</b> is a fully-featured procedural planet simulator. I wrote it as an independent research project for a high school computer science class.</p>
+                <p>To implement infinitely detailed terrain, I developed a custom recursive geometry subdivision algorithm.</p>
+                <p>It supports multiple planets and includes a gravitational <em>N</em>-body simulator.</p>
+                <p><em>Languages &amp; Technologies</em>: C++, OpenGL, SDL</p>
+                <ul class="no-bullet">
+                    <li><a href="https://github.com/christiancosgrove/PlanetRendering2"><img class="small-icon" src="images/github.svg"/><span>Source</span></a></li>
+                    <li><a href="pdf/rendering-physical-simulation.pdf"><span>Outline of Methods &amp; Algorithms</span></a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Amo2LIlHyo0?rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="strong-title">Block Testing</h3>
+                <p class="light-subtitle">January 2014&ndash;February 2014</p>
+            </div>
+            <div class="col-md-6">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/mHqxAC82ZNM?rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-6">
+                <p><b>Block Testing</b> was my first C++ and OpenGL project. It is the precursor to a voxel game like Minecraft. It incorporates an infinite, procedurally generated world.</p>
+
+                <p>In writing Block Testing, I taught myself low-level memory management and 3D computer graphics.</p>
+                <p>The engine features shader effects like parallax mapping, which makes textures "pop."</p>
+                <p><em>Languages &amp; Technologies</em>: C++, OpenGL, SFML</p>
+                <ul class="no-bullet">
+                    <li><a href="https://github.com/christiancosgrove/block-testing"><img class="small-icon" src="images/github.svg"/><span>Source</span></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Other Projects</h2>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-thumb">
+                <a href="http://gooselabs.com">
+                    <img class="img-responsive img-portfolio img-hover" src="/images/gooselabs.png" alt="Gooselabs.com">
+                    <span>Gooselabs.com &ndash; older projects and blog on computational physics (C# ASP.NET)</span>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-thumb">
+                <a href="https://www.youtube.com/watch?v=ekNmBCeZEiQ">
+                    <img class="img-responsive img-portfolio img-hover" src="/images/spherical-wave.png" alt="">
+                    <span>Finite-element-method wave-equation solver on a sphere (C++, OpenGL)</span>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-thumb">
+                <a href="https://github.com/christiancosgrove/GeneticEvolution">
+                    <img class="img-responsive img-portfolio img-hover" src="/images/genetic-evolution.png" alt="">
+                    <span>Walking soft-body genetic algorithm (C++, OpenGL)</span>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-thumb">
+                <a href="https://www.youtube.com/watch?v=czk7gF3x2hY">
+                    <img class="img-responsive img-portfolio img-hover" src="/images/vorticity-streamfunction.jpg" alt="">
+                    <span>2D vorticity-streamfunction fluid solver (C++)</span>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-thumb">
+                <a href="https://www.youtube.com/watch?v=epmJ0gyes7o">
+                    <img class="img-responsive img-portfolio img-hover" src="/images/black-hole-raytracing.jpg" alt="">
+                    <span>Black hole non-Euclidean raytracing (C++, OpenGL)</span>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-6 portfolio-thumb">
+                <a href="https://github.com/christiancosgrove/diffusion-monte-carlo">
+                    <img class="img-responsive img-portfolio img-hover" src="/images/diffusion-monte-carlo.png" alt="">
+                    <span>Diffusion Monte Carlo (C++)</span>
+                </a>
+            </div>
+        </div>
+        <hr>
+
+        <div class="well">
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-lg btn-default btn-block" href="javascript:location='mailto:\u0063\u0068\u0072\u0069\u0073\u0074\u0069\u0061\u006e\u002e\u0063\u006f\u0073\u0067\u0072\u006f\u0076\u0065\u0040\u0067\u006d\u0061\u0069\u006c\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0063\u0068\u0072\u0069\u0073\u0074\u0069\u0061\u006e\u002e\u0063\u006f\u0073\u0067\u0072\u006f\u0076\u0065\u0040\u0067\u006d\u0061\u0069\u006c\u002e\u0063\u006f\u006d')</script></a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; 2017 Christian Cosgrove</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
 </body>
+
 </html>

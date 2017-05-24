@@ -1,0 +1,197 @@
+/*!
+ * Start Bootstrap - Modern Business (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+/* Global Styles */
+
+html,
+body {
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+
+    font-size:18px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#9fd356+0,ffffff+100 */
+    background: #75a335;
+}
+
+
+.img-portfolio {
+    margin-bottom: 30px;
+}
+
+.img-hover:hover {
+   filter: brightness(70%);
+}
+
+/* Home Page Carousel */
+
+header.carousel {
+    height: 50%;
+}
+
+header.carousel .item,
+header.carousel .item.active,
+header.carousel .carousel-inner {
+    height: 100%;
+}
+
+header.carousel .fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+/* 404 Page Styles */
+
+.error-404 {
+    font-size: 100px;
+}
+
+/* Pricing Page Styles */
+
+.price {
+    display: block;
+    font-size: 50px;
+    line-height: 50px;
+}
+
+.price sup {
+    top: -20px;
+    left: 2px;
+    font-size: 20px;
+}
+
+.period {
+    display: block;
+    font-style: italic;
+}
+
+/* Footer Styles */
+
+footer {
+    margin: 50px 0;
+}
+
+/* Responsive Styles */
+
+@media(max-width:991px) {
+    .customer-img,
+    .img-related {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width:767px) {
+    .img-portfolio {
+        margin-bottom: 15px;
+    }
+
+    header.carousel .carousel {
+        height: 70%;
+    }
+}
+
+h1.page-header {
+    text-align:center;
+    margin-top:10px;
+}
+
+h1 {
+    font-size:60px;
+}
+h2 {
+    font-size:40px;
+}
+h4 {
+    font-size:24px;
+}
+h5 {
+    font-size:18px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'EB Garamond', serif;
+}
+
+a {
+    color:#56b0ff;
+}
+a:hover {
+    color: #448dce;
+}
+
+.panel-heading {
+    background-color: rgb(159, 211, 86) !important;
+    text-align:center;
+}
+
+div.main-container {
+    background-color: white;
+}
+footer {
+    text-align:center;
+}
+
+.serif {
+    font-family: 'EB Garamond', serif;
+}
+img.profile {
+    max-width:256px;
+}
+img.social-button {
+    max-width:64px;
+    margin-left:16px;
+}
+
+.description-row {
+    margin-bottom:16px;
+}
+
+ul {
+    list-style-type:square;
+}
+ul.no-bullet {
+    margin-left:0;
+    padding-left:64;
+    list-style-type:none;
+}
+
+ul.no-bullet span {
+    margin-left:16px;
+}
+
+img.small-icon {
+    width:24px;
+    margin-left:-24px;
+}
+
+.strong-title {
+    font-weight:900;
+}
+
+.light-subtitle {
+    color:#a3a3a3;
+}
+
+.portfolio-thumb {
+    position: relative; 
+}
+
+.portfolio-thumb span {
+    position: absolute; 
+    bottom:40px;
+    left: 32px; 
+    width: 100%; 
+    color:white;
+    text-shadow:
+       -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+         1px 1px 0 #000;
+
+    /*text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);*/
+    padding-right:64px;
+}
