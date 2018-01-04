@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <!-- Non social metatags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#157878">
+
+    
+
+    <title>Spectral Normalization Explained</title>
+
+    
+      <!-- Update your html tag to include the itemscope and itemtype attributes. -->
+<html itemscope itemtype="http://schema.org/Article">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Place this data between the <head> tags of your website -->
+
+  <meta name="author" content="Christian Cosgrove">
+
+<meta name="description" content="There has been a lot of profession of “breaking the state of the art” within the generative adversarial networks community lately. Sometimes, it has ..." />
+
+
+
+
+
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="Spectral Normalization Explained">
+<meta itemprop="description" content="There has been a lot of profession of “breaking the state of the art” within the generative adversarial networks community lately. Sometimes, it has ...">
+
+  <meta itemprop="image" content="http://localhost:4000/blog">
+
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+
+
+
+<meta name="twitter:title" content="Spectral Normalization Explained">
+<meta name="twitter:description" content="There has been a lot of profession of “breaking the state of the art” within the generative adversarial networks community lately. Sometimes, it has ...">
+
+
+
+<!-- Twitter summary card with large image must be at least 280x150px -->
+
+  <meta name="twitter:image:src" content="http://localhost:4000/blog">
+  <meta property="twitter:image" content="http://localhost:4000/blog">
+
+<meta property="twitter:url" content="http://localhost:4000/blog/2018/01/04/spectral-normalization-explained.html">
+
+<!-- Open Graph data -->
+<meta property="og:title" content="Spectral Normalization Explained" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:4000/blog/2018/01/04/spectral-normalization-explained.html" />
+
+  <meta property="og:image" content="http://localhost:4000/blog" />
+
+<meta property="og:description" content="There has been a lot of profession of “breaking the state of the art” within the generative adversarial networks community lately. Sometimes, it has ..." />
+<meta property="og:site_name" content="Ode to Gradients" />
+
+  <meta property="article:published_time" content="2018-01-04T00:00:00-05:00" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+    
+
+    <link rel="canonical" href="http://localhost:4000/blog/2018/01/04/spectral-normalization-explained.html">
+
+    
+
+    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    <meta name="robots" content="noarchive">
+
+    <!-- <link rel="alternate" media="only screen and (max-width: 640px)" href="">
+    <link rel="alternate" media="handheld" href=""> -->
+
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/blog/assets/css/style.css?v=">
+  </head>
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+
+    
+      <a class="site-title" href="/blog/">Ode to Gradients</a>
+    
+
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+            <a class="page-link" href="{ site.url }">About</a>
+            <!-- 
+            
+            
+              
+              
+            
+          
+            
+            
+          
+            
+            
+           -->
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    
+    
+    
+
+    <section class="page-header">
+      <h1 class="project-name">Spectral Normalization Explained</h1>
+      <h2 class="project-tagline"></h2>
+      
+      <!-- Post tagline -->
+      
+        <h2 class="project-date">
+        <time datetime="2018-01-04T00:00:00-05:00" itemprop="datePublished">
+          
+          Jan 4, 2018
+        </time>
+        
+        
+          • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">Christian Cosgrove</span></span>
+        
+        </h2>
+      
+      <!-- End: Post tagline -->
+    </section>
+
+    <section class="main-content">
+
+      <article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <!-- <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Spectral Normalization Explained</h1>
+    <p class="post-meta">
+      <time datetime="2018-01-04T00:00:00-05:00" itemprop="datePublished">
+        
+        Jan 4, 2018
+      </time>
+      </p>
+  </header> -->
+  <script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraphcore.js"></script>
+  <div itemprop="articleBody">
+    
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+
+<p>There has been a lot of profession of “breaking the state of the art” within the generative adversarial networks community lately. Sometimes, it has been difficult to keep apart hyperbole from genuine innovations in GANs. However, in recent weeks an <a href="https://openreview.net/forum?id=B1QRgziT-">OpenReview preprint</a> has caught the attention of Ian Goodfellow, the inventor of GANs. Goodfellow was impressed that the authors’ method managed to generate samples from all 1000 ImageNet classes <em>simultaneously</em>, the first demonstration of this achievement. The lack of diversity is a serious problem for GANs, and therefore this is a major milestone.</p>
+
+<p><img src="https://github.com/christiancosgrove/pytorch-spectral-normalization-gan/blob/master/with_sn.png?raw=true" alt="SN-GAN CIFAR-10 Samples (my implementation)" /></p>
+
+<p>Samples from <a href="https://github.com/christiancosgrove/pytorch-spectral-normalization-gan">my PyTorch implementation of spectral normalization GANs</a>.</p>
+
+<p>Spectral normalization is a deceptively simple concept, so let’s go through the argument outlined in the paper.</p>
+
+<h1 id="the-centrality-of-lipschitz-continuity-in-gans">The centrality of Lipschitz continuity in GANs</h1>
+<h2 id="definition-of-lipschitz-continuity">Definition of Lipschitz continuity</h2>
+
+<p>Lipschitz continuity sounds like an arcane term only introduced in a mathematical analysis course, but it is actually a straightforward “nice” property of functions—even simpler to explain, perhaps, than the usual epsilon-delta continuity.</p>
+
+<p>Suppose we have a GAN discriminator \(D : I \rightarrow \mathbb{R}\), where \(I\) is the space of images (e.g., \(\mathbb{R}^{32\times32}\)). Because both the domain and codomain of this function have inner products, we have a natural metric (distance function) in both spaces: the L2 distance.</p>
+
+<p>If our discriminator is <em>\(K\)-Lipschitz continuous</em>, then for all \(x\) and \(y\) in \(I\),</p>
+
+<p>\begin{equation*}
+||D(x) - D(y)|| \leq K ||x - y||
+\end{equation*}</p>
+
+<p>where \(|\cdot|\) is the L2 norm. Here, if \(K\) is a minimum, then it is called the <em>Lipschitz constant</em> of the discriminator.</p>
+
+<p>(It’s easy to see that if \(I=\mathbb{R}\), then Lipschitz continuity implies epsilon-delta continuity.)</p>
+
+<p>Let’s look at the 1D case to illustrate Lipschitz continuity geometrically. Suppose \(D(x) = \sin(x)\). If \(D\) is Lipschitz continuous, then we can draw a cone centered at every point on its graph such that the graph lies outside of this cone. (Drag the sliders below to verify this for yourself.)</p>
+<div id="jxgbox1" style="height:0;width:100%;padding-bottom:100%;"></div>
+<p>It’s clear that \(\sin\) is 1-Lipschitz continuous. What about ReLU, our favorite activation function?</p>
+<div id="jxgbox2" style="height:0;width:100%;padding-bottom:100%;"></div>
+<p>This is also obviously 1-Lipschitz continuous.</p>
+<div id="jxgbox3" style="height:0;width:100%;padding-bottom:100%;"></div>
+<p>In fact, Leaky ReLU (with a leak value less than one) is 1-Lipschitz continuous. However, it is easy to come up with a counterexample:</p>
+<div id="jxgbox4" style="height:0;width:100%;padding-bottom:100%;"></div>
+<p>The function \(D(x)=x^2\) is not Lipschitz continuous at all.</p>
+
+<script>
+function initLipschitzDemo(id, plotFunc){
+	board1 = JXG.JSXGraph.initBoard(id, {boundingbox: [-5, 5, 5, -5], axis: true, shownavigation: false, pan: {enabled:false}, zoom: {enabled:false}});
+	board1.suspendUpdate();
+	var sx = board1.create('slider', [[0.75,-2],[2,-2.0],[-5,0,5]], {name:'\\(x\\)'});
+	var sk = board1.create('slider', [[0.75,-3],[2,-3],[0.1,1,5]], {name:'\\(K\\)'});
+	board1.create('functiongraph', [
+		plotFunc,
+	-5, 5], {strokeColor: "#bb0000", curveType:'plot'});
+	var upperFunc = function(t) {
+			return plotFunc(sx.Value()) + Math.abs(sk.Value() * (t - sx.Value()));
+		};
+	var lowerFunc = function(t) {
+			return plotFunc(sx.Value()) + -Math.abs(sk.Value() * (t - sx.Value()));
+		};
+	var large = 100
+	var pol1 = board1.create('polygon',
+	[[function() {return sx.Value() }, function() {return upperFunc(sx.Value())}], [function() {return sx.Value()+large}, function() {return upperFunc(sx.Value()+large)}], [function(){return sx.Value()-large}, function(){return upperFunc(sx.Value()-large)}]], {
+				name:'pol1', withLabel: true,
+				fillColor: 'yellow',
+				curveType:'plot',
+				highlight:false,
+				showInfobox: false
+				});
+	var pol1 = board1.create('polygon',
+	[[function() {return sx.Value() }, function() {return lowerFunc(sx.Value())}], [function() {return sx.Value()+large}, function() {return lowerFunc(sx.Value()+large)}], [function(){return sx.Value()-large}, function(){return lowerFunc(sx.Value()-large)}]], {
+				name:'pol1', withLabel: true,
+				fillColor: 'yellow',
+				curveType:'plot',
+				highlight:false,
+				showInfobox: false
+				});
+	board1.unsuspendUpdate();
+}
+initLipschitzDemo('jxgbox1',function(t) { return Math.sin(t); });
+initLipschitzDemo('jxgbox2',function(t) { return t < 0 ? 0 : t; });
+initLipschitzDemo('jxgbox3',function(t) { return t < 0 ? 0.1 * t : t; });
+initLipschitzDemo('jxgbox4',function(t) { return t*t; });
+
+</script>
+
+<p>One interesting fact to notice from these examples is that if a 1D function is differentiable, then its Lipschitz constant is just the maximum value of its derivative. This gives a slightly more rigorous explanation of why \(x^2\) is not Lipschitz continuous: its derivative, \(2x\), is unbounded.</p>
+
+<p>So, what is the justification for requiring that our discriminator be \(K\)-Lipschitz? If we are training a Wasserstein GAN, then <a href="https://vincentherrmann.github.io/blog/wasserstein/">Kantorovich-Rubinstein duality requires it</a>. However, when we’re training using the standard KL-divergence loss, there’s a looser but still intuitive explanation. Just as <em>batch normalization</em> ensures that the signals within a neural net have well-behaved statistics—controlling the exploding gradient problem that plagues RNNs and deep feedforward networks—mandating Lipschitz continuity bounds the gradients in our discriminator.</p>
+
+<h2 id="the-multidimensional-case">The multidimensional case</h2>
+
+<p><strong>Suppose we have a linear function \(A : \mathbb{R}^{n}\rightarrow\mathbb{R}^m\)</strong>. This function could be the pre-activation operation of one layer in a multilayer perceptron. We can compute the <em>spectral norm</em> of this function, which is defined as the largest singular value of the matrix \(A\), i.e., the square root of the largest eigenvalue of \(A^T A\).</p>
+
+<p><strong>What is the Lipschitz constant of this function, if it exists?</strong> Since \(A\) is linear, we can set our point of reference \(y\) to zero (place our “cone” at zero). In other words, if \(A\) is \(K\)-Lipschitz at zero, then it is \(K\)-Lipschitz everywhere. This simplifies the Lipschitz continuity requirement to</p>
+
+<p>\begin{equation*}
+||A x|| \leq K ||x||
+\end{equation*}</p>
+
+<p>for all \(x\in I\). This is equivalent to the statement</p>
+
+<p>\begin{equation*}
+\langle A x, A x \rangle \leq K^2 \langle x, x \rangle, \forall x\in I
+\end{equation*}
+which in turn is equivalent to
+\begin{equation*}
+\langle (A^T A - K^2) x, x \rangle \leq 0 , \forall x\in I.
+\end{equation*}
+If we expand \(x\) in the orthonormal basis of eigenvectors of \(A^T A\) (i.e., \(x = \sum_i x_i v_i\)), we can then write out this inner product explicitly:</p>
+
+<p>\begin{align*}
+\langle (A^T A - K^2) x, x \rangle &amp;= \langle (A^T A - K^2) \sum_i x_i v_i, \sum_j x_j v_j \rangle\\&amp; 
+= \sum_i \sum_j x_i x_j \langle (A^T A - K^2) v_i, v_j \rangle\\&amp;
+= \sum_i (\lambda_i - K^2) x_i^2 \leq 0\\&amp;
+\implies \sum_i (K^2 - \lambda_i) x_i^2 \geq 0.
+\end{align*}</p>
+
+<p>Note that since \(A^T A\) is positive semidefinite, all the \(\lambda_i\)s must be nonnegative. To guarantee the above sum to be nonnegative, each term must be nonnegative, so we have</p>
+
+<p>\begin{equation*}
+K^2 - \lambda_i \geq 0 \text{ for all } i = 1 \ldots n.
+\end{equation*}</p>
+
+<p>Since we choose \(K\) to be the minimum value satisfying the above constraints, we immediately see that \(K\) is the square root of the largest eigenvalue of \(A^T A\). <strong>Therefore, the Lipschitz constant of a linear function is its largest singular value, or its <em>spectral norm</em></strong>.</p>
+
+<h2 id="composition-of-functions">Composition of functions</h2>
+
+<p>Analogously to the 1D case, it is easy to observe that the Lipschitz constant of a general differentiable function \(f : \mathbb{R}^n \rightarrow \mathbb{R}^m \) is the maximum spectral norm (maximum singular value) of its gradient over its domain.
+\begin{equation*}
+||f||_\text{Lip} = \sup_{x} \sigma(\nabla f(x))
+\end{equation*}</p>
+
+<p>Now, let’s introduce a function \(g : \mathbb{R}^m \rightarrow \mathbb{R}^l\). The underlying premise of the spectral normalization paper is that if we can find, or at least bound, the Lipschitz constant of the composition of \(f\) and \(g\), then we can obtain a bound on the Lipschitz constant of an arbitrary multilayer discriminator, which is just a composition of linear maps and componentwise nonlinearities.</p>
+
+<p>According to the chain rule, we have</p>
+
+<p>\begin{equation*}
+\nabla (g\circ f)(x) = \nabla g(f(x)) \nabla f(x).
+\end{equation*}</p>
+
+<p>Remember that these gradients are just matrices being multiplied together. This suggests a promising approach: to find the spectral norm of a composition of functions, express it in terms of the spectral norm of the matrix product of its gradients. We can write the spectral norm (maximum singular value) in another convenient form:</p>
+
+<p>\begin{equation}
+\sigma(\nabla f(x)) = \sup_{||v||\leq 1} ||[\nabla f(x)] v||
+\end{equation}
+\begin{equation}
+\sigma(\nabla(g\circ f)(x)) = \sup_{||v||\leq 1} ||[\nabla g(f(x))][\nabla f(x)] v||
+\end{equation}
+Since the supremum in (1) is convex, we can bound the result in (2) as follows:</p>
+
+<p>\begin{equation*}
+\sup_{||v||\leq 1} ||[\nabla g(f(x))][\nabla f(x)] v|| \leq \sup_{||u||\leq 1} ||[\nabla g(f(x))]u||\sup_{||v||\leq 1} ||[\nabla f(x)] v||.
+\end{equation*}</p>
+
+<p>In other words, 
+\begin{equation*}
+||g\circ f||_\text{Lip} \leq ||g||_\text{Lip} ||f||_\text{Lip}.
+\end{equation*}
+This bound is provides the theoretical justification for spectral normalization outlined in the paper. The solution goes like this: if we can fix each of the factors in the right-hand side of this inequality to 1, then we can ensure that the discriminator is at most 1-Lipschitz. If we are training a Wasserstein GAN, this guarantees that Kantarovich-Rubenstein duality holds.</p>
+
+<h1 id="spectral-normalization">Spectral normalization</h1>
+
+<p>Fixing the spectral norm of a layer is as straightforward as it sounds. <em>Spectral normalization</em>, proposed in this paper, simply replaces every weight \(W\) with \(W / \sigma(W)\). But how do we efficiently compute \(\sigma(W)\), the largest singular value of \(W\)? The answer is a cheap and effective technique called <em>power iteration</em>.</p>
+
+<p>Suppose we have a linear map \(W : \mathbb{R}^n \rightarrow \mathbb{R}^m\). Suppose we have a random vector in the domain of our matrix, \(v\in \mathbb{R}^n\), and a vector in the codomain, \(u\in\mathbb{R}^m\).</p>
+
+<p>Let’s first consider \(v\). We can form the square matrix \(W^T W : \mathbb{R}^n \rightarrow \mathbb{R}^n\). <em>Power iteration</em> involves computing the recurrence relation
+\begin{equation*}
+v_{t+1} = \frac{W^T W v_t}{||W^T W v_t||}
+\end{equation*}</p>
+
+<p>we can unroll this recurrence relation:
+\begin{equation*}
+v_{t} = \frac{(W^T W)^t v}{||(W^T W)^t v||}
+\end{equation*}</p>
+
+<p>By the <a href="https://en.wikipedia.org/wiki/Spectral_theorem">spectral theorem</a>, we can write \(v\) in an orthonormal basis of eigenvectors of \(W^T W\). Let’s denote \(\lambda_1 \ldots \lambda_n\) as the descending eigenvalues of \(W^T W\) and \(e_1 \ldots e_n\) the corresponding eigenvectors.</p>
+
+<p>Power iteration then consists of computing the following:</p>
+
+<p>\begin{align*}
+v_{t}&amp; = \frac{(W^T W)^t \sum_i v_i e_i}{||(W^T W)^t \sum_i v_i e_i||}\\&amp;
+= \frac{\sum_i v_i \lambda_i^t e_i}{||\sum_i v_i \lambda_i^t e_i||}\\&amp;
+= \frac{v_1 \lambda_1^t \sum_i \frac{v_i}{v_1} \left(\frac{\lambda_i}{\lambda_1}\right)^t e_i}{||v_1 \lambda_1^t \sum_i \frac{v_i}{v_1} \left(\frac{\lambda_i}{\lambda_1}\right)^t e_i||}.
+\end{align*}</p>
+
+<p>Now note that since \(\lambda_1\) is the largest eigenvalue of \(W^T W\), upon power iteration \(\lim\limits_{t\rightarrow\infty}\frac{\lambda_i}{\lambda_1} = 0\) for \(i&gt;1\). So, after many iterations of the above procedure, \(v_t\) converges to \(e_1\). We call the intermediate computation \(\frac{W v_t}{||W v_t||} = u_t\). The power iteration procedure becomes:</p>
+
+<p>\begin{align*}
+&amp;u_{t+1} = W v_t\\&amp;
+v_{t+1} = W^T u_{t+1}.
+\end{align*}</p>
+
+<p>Since the singular values of \(W^T\) and \(W\) are the same, it must be that the spectral norm is \(\sigma(W) = \sqrt{\lambda_1} = ||W v||\). Since \(||u||\) is of unit length, we can conveniently compute the spectral norm as follows:
+\begin{equation*}
+\sigma(W) = ||W v|| = u^T W v.
+\end{equation*}</p>
+
+<p>Now, the algorithm of spectral normalization should appear simple. For every weight in our network, we randomly initialize vectors \(u\) and \(v\). Because the weights change slowly, we only need to perform a single power iteration on the current version of these vectors for each step of learning; this is why spectral normalization is more computationally efficient than, say, <a href="https://arxiv.org/pdf/1704.00028.pdf">gradient penalty</a>.</p>
+
+<p><a href="https://github.com/christiancosgrove/pytorch-spectral-normalization-gan">I’ve implemented a simple spectral normalization wrapper module in PyTorch</a>. Feel free to try it out and see the effectiveness of spectral normalization GANs yourself.</p>
+
+  </div>
+
+  
+</article>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+      <footer class="site-footer">
+        <!-- SVG icons from https://iconmonstr.com -->
+
+        <!-- Github icon -->
+        <span class="my-span-icon">
+          <a href="https://github.com/christiancosgrove" aria-label="'s GitHub" title="'s GitHub">
+            <svg class="my-svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </span>
+
+        <!-- Twitter icon -->
+        <!-- <span class="my-span-icon">
+          <a href="https://twitter.com/" aria-label="'s Twitter" title="'s Twitter">
+            <svg class="my-svg-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"/></svg>
+          </a>
+        </span> -->
+
+        <!-- RSS icon -->
+        
+        <!-- Contact icon -->
+        <!-- 
+         -->
+
+      </footer>
+    </section>
+
+    
+      <script type="text/javascript">
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-99827000-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    
+  </body>
+</html>
