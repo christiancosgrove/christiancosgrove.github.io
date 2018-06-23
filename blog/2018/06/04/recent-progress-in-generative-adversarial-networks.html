@@ -42,7 +42,7 @@
 <meta itemprop="name" content="Recent Progress In Generative Adversarial Networks">
 <meta itemprop="description" content="">
 
-  <meta itemprop="image" content="http://localhost:4000/blog">
+  <meta itemprop="image" content="https://christiancosgrove.com/blog">
 
 
 <!-- Twitter Card data -->
@@ -57,17 +57,17 @@
 
 <!-- Twitter summary card with large image must be at least 280x150px -->
 
-  <meta name="twitter:image:src" content="http://localhost:4000/blog">
-  <meta property="twitter:image" content="http://localhost:4000/blog">
+  <meta name="twitter:image:src" content="https://christiancosgrove.com/blog">
+  <meta property="twitter:image" content="https://christiancosgrove.com/blog">
 
-<meta property="twitter:url" content="http://localhost:4000/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html">
+<meta property="twitter:url" content="https://christiancosgrove.com/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html">
 
 <!-- Open Graph data -->
 <meta property="og:title" content="Recent Progress In Generative Adversarial Networks" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:4000/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html" />
+<meta property="og:url" content="https://christiancosgrove.com/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html" />
 
-  <meta property="og:image" content="http://localhost:4000/blog" />
+  <meta property="og:image" content="https://christiancosgrove.com/blog" />
 
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="Ode to Gradients" />
@@ -100,11 +100,11 @@
 
     
 
-    <link rel="canonical" href="http://localhost:4000/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html">
+    <link rel="canonical" href="https://christiancosgrove.com/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html">
 
     
 
-    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    <link rel="shortcut icon" href="https://christiancosgrove.com/favicon.ico">
     <meta name="robots" content="noarchive">
 
     <!-- <link rel="alternate" media="only screen and (max-width: 640px)" href="">
@@ -226,15 +226,15 @@ MathJax.Hub.Config({
 
 <p>This average pooling treats distant points in the image as independent, which is certainly not the case in most natural images. For instance, suppose there is a real image in our training set</p>
 
-<p><img src="http://localhost:4000/blog/assets/images/cat.jpg" alt="real sample" /></p>
+<p><img src="https://christiancosgrove.com/blog/assets/images/cat.jpg" alt="real sample" /></p>
 
 <p>and our generator produces an output</p>
 
-<p><img src="http://localhost:4000/blog/assets/images/cat-fake.jpg" alt="real sample" /></p>
+<p><img src="https://christiancosgrove.com/blog/assets/images/cat-fake.jpg" alt="real sample" /></p>
 
 <p>In this case, the generator matches the true data exactly except at a small spatial position where the generator mistakenly produces a red box. If the discriminator is using global average pooling, then the outputs of distant receptive fields—which cannot differentiate the two images—will be averaged with the outputs of few receptive fields that do contain the red box.</p>
 
-<p><img src="http://localhost:4000/blog/assets/images/cat-fake-receptive.jpg" alt="real sample" /></p>
+<p><img src="https://christiancosgrove.com/blog/assets/images/cat-fake-receptive.jpg" alt="real sample" /></p>
 
 <p>This averaging destroys the signal that the discriminator needs to differentiate the two images, making it difficult for the generator to improve further.</p>
 
@@ -256,7 +256,7 @@ MathJax.Hub.Config({
 
 <p>The self-attention output is added to the original output and multiplied by a weight parameter. At the start of training, this weight is zero; as the generated samples become more difficult to distinguish from the real samples, this weight can be increased so that the discriminator can use self-attention.</p>
 
-<p><img src="http://localhost:4000/blog/assets/images/sagan.png" alt="Self-attention" />
+<p><img src="https://christiancosgrove.com/blog/assets/images/sagan.png" alt="Self-attention" />
 (<a href="https://arxiv.org/abs/1805.08318">taken from Zhang et al.</a>)</p>
 
 <p>The above self-attention visualizations from the SAGAN paper demonstrate how the attention units capture the object shape. In most cases, the attention maps capture local feature similarities (2nd from left, top) as a convolutional network would. However, in some cases (1st and second from right, top and bottom), the self-attention layer detects detects correlations between features in distant regions of the image. This explains why the <em>global structure</em> of SAGAN samples, seen above, looks so convincing.
@@ -274,12 +274,12 @@ Below is an example of the self-attention maps from <a href="https://github.com/
     <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
-      this.page.url = 'http://localhost:4000/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html';
-      this.page.identifier = 'http://localhost:4000/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html';
+      this.page.url = 'https://christiancosgrove.com/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html';
+      this.page.identifier = 'https://christiancosgrove.com/blog/2018/06/04/recent-progress-in-generative-adversarial-networks.html';
     };
     (function() {
       var d = document, s = d.createElement('script');
-      s.src = 'https://christian_cosgrove.disqus.com/embed.js';
+      s.src = 'https://christiancosgrove.disqus.com/embed.js';
       s.setAttribute('data-timestamp', +new Date());
       (d.head || d.body).appendChild(s);
     })();
