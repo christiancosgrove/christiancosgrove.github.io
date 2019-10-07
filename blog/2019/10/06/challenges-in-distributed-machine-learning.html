@@ -42,7 +42,7 @@
 <meta itemprop="name" content="Challenges In Distributed Machine Learning">
 <meta itemprop="description" content="">
 
-  <meta itemprop="image" content="http://localhost:4000/blog">
+  <meta itemprop="image" content="/blog">
 
 
 <!-- Twitter Card data -->
@@ -57,17 +57,17 @@
 
 <!-- Twitter summary card with large image must be at least 280x150px -->
 
-  <meta name="twitter:image:src" content="http://localhost:4000/blog">
-  <meta property="twitter:image" content="http://localhost:4000/blog">
+  <meta name="twitter:image:src" content="/blog">
+  <meta property="twitter:image" content="/blog">
 
-<meta property="twitter:url" content="http://localhost:4000/blog/2019/10/06/challenges-in-distributed-machine-learning.html">
+<meta property="twitter:url" content="/blog/2019/10/06/challenges-in-distributed-machine-learning.html">
 
 <!-- Open Graph data -->
 <meta property="og:title" content="Challenges In Distributed Machine Learning" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:4000/blog/2019/10/06/challenges-in-distributed-machine-learning.html" />
+<meta property="og:url" content="/blog/2019/10/06/challenges-in-distributed-machine-learning.html" />
 
-  <meta property="og:image" content="http://localhost:4000/blog" />
+  <meta property="og:image" content="/blog" />
 
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="Ode to Gradients" />
@@ -100,11 +100,11 @@
 
     
 
-    <link rel="canonical" href="http://localhost:4000/blog/2019/10/06/challenges-in-distributed-machine-learning.html">
+    <link rel="canonical" href="/blog/2019/10/06/challenges-in-distributed-machine-learning.html">
 
     
 
-    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    <link rel="shortcut icon" href="/favicon.ico">
     <meta name="robots" content="noarchive">
 
     <!-- <link rel="alternate" media="only screen and (max-width: 640px)" href="">
@@ -245,7 +245,7 @@ This shows that we can split up our dataset across many machines and compute the
 \end{equation}
 This shows how we can use <strong>data parallelism</strong> to train a model with large batch sizes over multiple machines. On each iteration, each machine samples a random subset of their partition of the data, computes a gradient estimate \(g_{B_i}(\theta)\) using backpropagation on that subset, and sends its gradient to a centralized parameter server that averages the received gradients and updates the parameters. The parameter server then sends its parameters back to the workers so that they can update their local copy of the model.</p>
 
-<p><img src="http://localhost:4000/blog/assets/images/data_parallelism.svg" alt="An illustration of data parallelism" /></p>
+<p><img src="/blog/assets/images/data_parallelism.svg" alt="An illustration of data parallelism" /></p>
 
 <p>This gives an idea of how we can train models with massive batch sizes (since the effective batch size is the sum of the batch sizes for each machine). Larger batch sizes reduce gradient norms, which in in turn improve the convergence rate of SGD. (<a href="https://research.fb.com/wp-content/uploads/2017/06/imagenet1kin1h5.pdf">Large batch sizes have been used to train models on ImageNet in less than one hour.</a>)</p>
 
@@ -262,7 +262,7 @@ This shows how we can use <strong>data parallelism</strong> to train a model wit
   <li>The request pays the nodes a small amount for their gradients. This gives the nodes an incentive to continue computing gradients for the requester.</li>
 </ol>
 
-<p><img src="http://localhost:4000/blog/assets/images/decentralized_ml.svg" alt="A toy model for decentralized ML" /></p>
+<p><img src="/blog/assets/images/decentralized_ml.svg" alt="A toy model for decentralized ML" /></p>
 
 <p>Here are some problems with this approach</p>
 <ol>
@@ -288,8 +288,8 @@ This shows how we can use <strong>data parallelism</strong> to train a model wit
     <div id="disqus_thread"></div>
   <script>
     var disqus_config = function () {
-      this.page.url = 'http://localhost:4000/blog/2019/10/06/challenges-in-distributed-machine-learning.html';
-      this.page.identifier = 'http://localhost:4000/blog/2019/10/06/challenges-in-distributed-machine-learning.html';
+      this.page.url = '/blog/2019/10/06/challenges-in-distributed-machine-learning.html';
+      this.page.identifier = '/blog/2019/10/06/challenges-in-distributed-machine-learning.html';
     };
     (function() {
       var d = document, s = d.createElement('script');
